@@ -30,19 +30,6 @@ export class RoomService {
     const params = [startDate, endDate];
     const orders = await this.db.executeQuery(query, params);
     return orders;
-    // if (!orders.length) {
-    //   return 'Свободно';
-    // }
-
-    // return (
-    //   'Занято ' +
-    //   orders
-    //     .map(
-    //       (order) =>
-    //         `c ${new Date(order.check_in_date).toLocaleDateString()} по ${new Date(order.check_out_date).toLocaleDateString()}`,
-    //     )
-    //     .join(' и ')
-    // );
   }
   async checkRoomForDate(roomId: number, date: Date) {
     const query = `select * from orders where room_id = $1 and ($2 between check_in_date and check_out_date) `;
